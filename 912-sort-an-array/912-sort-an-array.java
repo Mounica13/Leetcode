@@ -1,6 +1,6 @@
 class Solution {
     
-   /* public int[] heapsort(int[] nums)
+   public int[] heapsort(int[] nums)
     {
         PriorityQueue<Integer> minheap = new PriorityQueue<>();
         for(int i = 0; i < nums.length; i++)
@@ -13,7 +13,7 @@ class Solution {
             
         }
         return nums;
-    } */
+    } 
     
     public int[] merge(int[] left, int[] right, int[] nums)
     {
