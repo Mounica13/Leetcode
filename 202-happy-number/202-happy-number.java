@@ -21,7 +21,6 @@ class Solution {
             while(n != 1 && !set.contains(n)){
                 set.add(n);
                 n = checkSum(n);
-                sum = 0;
             }
             
             return (n == 1) ? true : false;
