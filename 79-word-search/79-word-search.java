@@ -7,7 +7,7 @@ class Solution {
             return true;
     
         
-       if(r < 0 || r >= rows || c< 0 || c >= columns)
+       if(r < 0 || r >= rows || c< 0 || c >= columns || board[r][c] == 'v')
             return false;
      
         if(board[r][c] != word.charAt(count))
