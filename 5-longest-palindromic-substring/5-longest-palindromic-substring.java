@@ -35,7 +35,8 @@ class Solution {
 }
 
 
-       
+//Time complexity :O(n * n)
+//Space complexity : O(1)
         
         
     
