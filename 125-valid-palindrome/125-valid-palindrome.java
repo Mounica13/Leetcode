@@ -1,4 +1,4 @@
-class Solution {
+/* class Solution {
     public boolean isPalindrome(String s) {
        
         if(s == "")
@@ -30,8 +30,36 @@ class Solution {
             return false;
         
     }
-}
+} */
 
 
 //Time complexity : O(n)
-//Space complexity : O(1)
+//Space complexity : O(n)
+
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        if(s == "")
+            return true;
+        
+        for(int i = 0, j = s.length() -1; i < j; i++, j--){
+            while(i < j && !Character.isLetterOrDigit(s.charAt(i))) {
+                i++;
+            }
+            
+            while(i < j && !Character.isLetterOrDigit(s.charAt(j))) {
+                j--;
+            }
+            
+            if(Character.toLowerCase(s.charAt(i)) != (Character.toLowerCase(s.charAt(j))))
+              return false;
+        }
+        return true;
+        
+    }
+}
+
+
+
+//Time complexity : O(n)
+//Space complexity :O(1)
