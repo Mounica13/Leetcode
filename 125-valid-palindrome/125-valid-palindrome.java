@@ -1,27 +1,28 @@
 class Solution {
     public boolean isPalindrome(String s) {
-        
-        if(s == " ")
+       
+        if(s == "")
             return true;
         
-         char[] arr = new char[s.length()];
+        char[] word = new char[s.length()];
         int index = 0;
-        for(int i = 0; i < s.length(); i++)
-        {
+        
+         for(int i = 0; i < s.length(); i++) {
             char ch = Character.toLowerCase(s.charAt(i));
-            if(Character.isLetterOrDigit(ch))
-                arr[index++] = ch;
-        }
-        String realword = String.copyValueOf(arr);
+            if(Character.isLetterOrDigit(ch)) {
+                word[index++] = ch;
+            }
+         }
+        String realword = String.valueOf(word);
         
         index = 0;
-        for(int i = s.length() - 1; i >= 0; i--)
-        {
-            char ch = Character.toLowerCase(s.charAt(i));
-            if(Character.isLetterOrDigit(ch))
-                arr[index++] = ch;
+        for(int j = s.length() - 1; j > 0; j--) {
+            char ch = Character.toLowerCase(s.charAt(j));
+            if(Character.isLetterOrDigit(ch)) {
+                word[index++] = ch;
+            }
         }
-        String reverse = String.copyValueOf(arr);
+        String reverse = String.valueOf(word);
         
         if(realword.equals(reverse))
             return true;
@@ -30,3 +31,7 @@ class Solution {
         
     }
 }
+
+
+//Time complexity : O(n)
+//Space complexity : O(1)
