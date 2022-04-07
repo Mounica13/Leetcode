@@ -14,7 +14,7 @@
  * }
  */
 
-//Method 1 : 
+//Method 1 : (using stack)
 
 /* class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
@@ -77,30 +77,29 @@
 
 
 
-//Method 2:
+//Method 2: Using queue(very efficient)
 
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        
         List<List<Integer>> result = new ArrayList<>();
         
-        if(root == null){
+        if(root == null)
             return result;
-        }
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
         
         int level = 0;
-        Queue<TreeNode> queue = new LinkedList<>();
-        
-        queue.add(root);
         
         while(!queue.isEmpty()){
             
             List<Integer> levelResult = new ArrayList<>();
+            
             int length = queue.size();
             
             for(int i = 0; i < length; i++) {
                 TreeNode n = queue.poll();
-         
+            
                 if(n.left != null) {
                     queue.add(n.left);
                 }
@@ -110,18 +109,20 @@ class Solution {
                 }
             
                 if(level % 2 == 0){
-                    levelResult.add(n.val);
+                    levelResult.add(n.val); 
                 }
-            
                 else{
-                    levelResult.add(0, n.val);
+                    levelResult.add(0, n.val);   
                 }
             }
             
             level++;
             result.add(levelResult);
-            
         }
+        
         return result;
     }
 }
+
+//Time complexity : O(n)
+//Space complexit:O(n)
