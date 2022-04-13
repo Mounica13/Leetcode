@@ -28,7 +28,8 @@ class Solution {
    
     
   //Solution 2:
-    public int arraySign(int[] nums) {
+    
+   /* public int arraySign(int[] nums) {
         
         Boolean sign = true;
         for(int i = 0; i < nums.length; i++) {
@@ -40,6 +41,24 @@ class Solution {
         }
         
         return (sign) ? 1 : -1;
+    } */
+    
+   
+    
+    
+    //Solution 3:
+    
+    public int arraySign(int[] nums) {
+        int count= 0;
+        for(int i = 0; i < nums.length; i++) {
+           if(nums[i] == 0)
+               return 0;
+            if(nums[i] < 0)
+                count++;
+        }
+        
+        return (count % 2 == 0) ? 1 : -1;
+        
     }
     
 }
