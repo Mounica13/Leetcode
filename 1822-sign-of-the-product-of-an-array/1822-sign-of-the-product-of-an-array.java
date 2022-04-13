@@ -1,6 +1,6 @@
 class Solution {
     
-    private int signFunc(int[] nums1) {
+   /* private int signFunc(int[] nums1) {
         int product = 1;
         for(int i : nums1) {
             product *= i;
@@ -22,5 +22,24 @@ class Solution {
         }
         
         return signFunc(nums1);
+    } */
+
+    
+   
+    
+  //Solution 2:
+    public int arraySign(int[] nums) {
+        
+        Boolean sign = true;
+        for(int i = 0; i < nums.length; i++) {
+           if(nums[i] == 0)
+               return 0;
+           
+           if(nums[i] < 0)
+               sign = !sign;
+        }
+        
+        return (sign) ? 1 : -1;
     }
+    
 }
