@@ -30,3 +30,6 @@ class Solution {
         return depth;
     }
 }
+
+//Time complexity : O(n)
+//Space complexity : O(n)
