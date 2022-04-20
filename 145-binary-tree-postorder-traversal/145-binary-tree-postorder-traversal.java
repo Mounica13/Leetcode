@@ -15,16 +15,18 @@
  */
 class Solution {
     
-    private List<Integer> postorderTraversalHelper(TreeNode current, List<Integer> list){
-        if(current != null) {
-            postorderTraversalHelper(current.left, list);
-            postorderTraversalHelper(current.right, list);
-            list.add(current.val);
-        }
-        return list;
+    private void postorderTraversalHelper(TreeNode current, List<Integer> list){
+        if(current == null) 
+            return;
+        
+        postorderTraversalHelper(current.left, list);
+        postorderTraversalHelper(current.right, list);
+        list.add(current.val);
     }
+    
     public List<Integer> postorderTraversal(TreeNode root) {
         List<Integer> list = new LinkedList<>();
-        return postorderTraversalHelper(root, list);
+        postorderTraversalHelper(root, list);
+        return list;
     }
 }
