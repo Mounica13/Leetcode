@@ -14,31 +14,33 @@ class Solution {
         return map;
     }
     
-    private void Helper(String digits, StringBuilder sb, HashMap<Character, String> map, List<String> result, int index){
-        if(digits.length() == index){
+    private void Helper(String digits, StringBuilder sb, HashMap<Character, String> map, int index, List<String> result){
+        if(index == digits.length()){
             result.add(sb.toString());
             return;
         }
-        
         String letters = map.get(digits.charAt(index));
         for(char ch : letters.toCharArray()){
             sb.append(ch);
-            Helper(digits, sb, map, result, index + 1);
+            Helper(digits, sb, map, index + 1, result);
             sb.deleteCharAt(sb.length() - 1);
         }
     }
-  
     public List<String> letterCombinations(String digits) {
         List<String> result = new ArrayList<>();
-        HashMap<Character, String> map = new HashMap<>();
+        
         if(digits.length() == 0)
             return result;
         
+        HashMap<Character, String> map = new HashMap<>();
         map = setMap();
         StringBuilder sb = new StringBuilder();
-        Helper(digits, sb, map, result, 0);
-        
+        Helper(digits, sb, map, 0, result);
         
         return result;
-    }
+    } 
 }
+
+
+//Time complexity : O(N. 4^N) //N is the length of digits
+//Space complexity : O(N) //for stack recursion in backtracking
