@@ -14,22 +14,16 @@
  * }
  */
 class Solution {
-    
     private int maxDepthHelper(TreeNode current){
-        if(current == null) {
+        if(current == null)
             return 0;
-        }
-        else{
-            return Math.max(maxDepthHelper(current.left), maxDepthHelper(current.right)) + 1;
-        }
+        
+        return Math.max(maxDepthHelper(current.left), maxDepthHelper(current.right)) + 1;
     }
-   
     public int maxDepth(TreeNode root) {
-      if(root == null){
-          return 0;
-      }
-      
-      return maxDepthHelper(root);
+        if(root == null)
+            return 0;
+        return maxDepthHelper(root);
     }
 }
 
