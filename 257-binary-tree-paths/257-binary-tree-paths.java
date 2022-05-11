@@ -15,67 +15,31 @@
  */
 class Solution {
     
-    public void binaryTreepathsRecursion(TreeNode current, String path, List<String> pathlist)
-    {
+    private List<String> binaryTreePathsHelper(TreeNode current, String path, List<String> result){
         if(current == null)
-            return;
-        
-        path = path + String.valueOf(current.val);
-        
-        if(current.left == null && current.right == null)
-            pathlist.add(path);
-        
-       path = path + "->";
-     
-       binaryTreepathsRecursion(current.left, path, pathlist);
-       binaryTreepathsRecursion(current.right, path, pathlist);
-        
-      // return pathlist;
-        
-    }
-    public List<String> binaryTreePaths(TreeNode root) {
-        
-        if(root == null)
             return null;
+        
+        path = path + current.val;
     
-        List<String> pathlist = new LinkedList<>();
+        if(current.left == null && current.right == null) {
+            result.add(path);
+            path = "";
+        }
+      
+        path = path + "->";
         
-        binaryTreepathsRecursion(root,"", pathlist);
+        binaryTreePathsHelper(current.left, path, result);
+        binaryTreePathsHelper(current.right, path, result);
         
-        return pathlist;
+        return result;
+        }
+        
+    
+    public List<String> binaryTreePaths(TreeNode root) {
+        List<String> result = new ArrayList<>();
+        if(root == null)
+            return result;
+        
+        return binaryTreePathsHelper(root, "", result);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
