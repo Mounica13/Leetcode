@@ -15,23 +15,22 @@
  */
 class Solution {
     
-    private int minDepthHelper(TreeNode current){
-        if(current == null)
+    private int minDepthHelper(TreeNode root){
+        if(root == null)
             return 0;
-        if(current.left == null){
-            return minDepthHelper(current.right) + 1;
-        }
-        if(current.right == null){
-            return minDepthHelper(current.left) + 1;
-        }
-        else{
-            return Math.min(minDepthHelper(current.left), minDepthHelper(current.right)) + 1;
-        }
+        
+        if(root.left == null)
+            return minDepthHelper(root.right) + 1;
+        
+        if(root.right == null)
+            return minDepthHelper(root.left) + 1;
+        
+        return Math.min(minDepthHelper(root.left), minDepthHelper(root.right)) + 1;
     }
     public int minDepth(TreeNode root) {
-       if(root == null){
-           return 0;
-       }
-      return minDepthHelper(root);
+        if(root == null)
+            return 0;
+        
+        return minDepthHelper(root);
     }
 }
