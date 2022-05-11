@@ -13,116 +13,36 @@
  *     }
  * }
  */
-
-//Method 1 : (using stack)
-
-/* class Solution {
-    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        
-     
-        List<List<Integer>> result = new ArrayList<>();
-        
-        if(root == null) {
-            return result;
-        }
-       
-        Stack<TreeNode> s1 = new Stack<>();
-        Stack<TreeNode> s2 = new Stack<>();
-        List<Integer> list = new ArrayList<Integer>();
-        
-        s1.push(root);
-        
-        while(!s1.isEmpty() || !s2.isEmpty()){
-            while(!s1.isEmpty()) {
-                TreeNode n = s1.pop();
-                list.add(n.val);
-                if(n.left != null) {
-                    s2.push(n.left);
-                }
-                if(n.right != null) {
-                    s2.push(n.right);
-                }
-                
-            }
-            if(!list.isEmpty()){
-                result.add(new ArrayList<>(list));
-            }
-            list.clear();
-            
-            
-            while(!s2.isEmpty()){
-                TreeNode n = s2.pop();
-                list.add(n.val);
-                if(n.right != null) {
-                    s1.push(n.right);
-                }
-                if(n.left != null) {
-                    s1.push(n.left);
-                }
-                
-            }
-            if(!list.isEmpty()){
-                result.add(new ArrayList<>(list));
-            }
-            list.clear();
-        }
-        
-        return result;
-        
-    }
-} */
-
-//Time complexity: O(n)
-//Space complexity :O(n)
-
-
-
-//Method 2: Using queue(very efficient)
-
 class Solution {
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
+        List<List<Integer>> result = new LinkedList<>();
         
         if(root == null)
             return result;
         
+        List<Integer> level;
+        int count = 0;
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        
-        int level = 0;
+        queue.offer(root);
         
         while(!queue.isEmpty()){
-            
-            List<Integer> levelResult = new ArrayList<>();
-            
-            int length = queue.size();
-            
-            for(int i = 0; i < length; i++) {
-                TreeNode n = queue.poll();
-            
-                if(n.left != null) {
-                    queue.add(n.left);
-                }
-            
-                if(n.right != null) {
-                    queue.add(n.right);
-                }
-            
-                if(level % 2 == 0){
-                    levelResult.add(n.val); 
-                }
-                else{
-                    levelResult.add(0, n.val);   
-                }
+            level = new LinkedList<>();
+            int size = queue.size();
+            for(int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if(node.left != null)
+                    queue.add(node.left);
+                if(node.right != null)
+                    queue.add(node.right);
+                
+                if(count % 2 == 0)
+                    level.add(node.val);
+                else
+                    level.add(0, node.val);
             }
-            
-            level++;
-            result.add(levelResult);
+            count++;
+            result.add(level);
         }
-        
         return result;
     }
 }
-
-//Time complexity : O(n)
-//Space complexit:O(n)
