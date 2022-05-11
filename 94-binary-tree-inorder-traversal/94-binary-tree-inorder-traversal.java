@@ -15,22 +15,18 @@
  */
 class Solution {
     
-    public void inorderTraversalRecursion(TreeNode root, List<Integer> list)
-    {
-        if(root != null)
-        {
-        
-        inorderTraversalRecursion(root.left, list);
-        list.add(root.val);
-        inorderTraversalRecursion(root.right, list);
+    private void inOrderTraversalHelper(TreeNode current, List<Integer> list){
+       
+        if(current != null){
+            inOrderTraversalHelper(current.left, list);
+            list.add(current.val);
+            inOrderTraversalHelper(current.right, list);
         }
-        
     }
+    
     public List<Integer> inorderTraversal(TreeNode root) {
-        
-        List<Integer> list = new ArrayList<Integer>();
-        inorderTraversalRecursion(root, list);
-        
+        List<Integer> list = new ArrayList<>();
+        inOrderTraversalHelper(root, list);
         return list;
     }
 }
