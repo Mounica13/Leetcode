@@ -16,6 +16,7 @@ class Solution {
         map.put(root, null);
         stack.push(root);
         
+        //add nodes to map until both p and q are found
         while(!map.containsKey(p) || !map.containsKey(q)){
             TreeNode node = stack.pop();
             
@@ -30,12 +31,14 @@ class Solution {
             }
         }
         
+        //Add the parents of p to set
         HashSet<TreeNode> set = new HashSet<>();
         
         while(p != null){
             set.add(p);
             p = map.get(p);
         }
+        
         
         while(!set.contains(q)){
             q = map.get(q);
