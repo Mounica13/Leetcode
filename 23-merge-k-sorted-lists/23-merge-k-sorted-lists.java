@@ -13,12 +13,11 @@ class Solution {
       if(lists == null)
           return null;
         
-        PriorityQueue<Integer> queue =  new PriorityQueue<>((a,b) -> a - b);
+        PriorityQueue<ListNode> queue =  new PriorityQueue<>((a,b) -> a.val- b.val);
         
         for(ListNode point : lists){
-            while(point != null) {
-                queue.offer(point.val);
-                point = point.next;
+            if(point != null) {
+                queue.offer(point);
             }
         }
         
@@ -27,9 +26,12 @@ class Solution {
         ListNode current = head;
         
         while(!queue.isEmpty()){
-            Integer value = queue.poll();
-            current.next = new ListNode(value);
+            ListNode node = queue.poll();
+            current.next = node;
             current = current.next;
+            if(current.next != null){
+                queue.offer(current.next);
+            }
         }
         
         return head.next;
