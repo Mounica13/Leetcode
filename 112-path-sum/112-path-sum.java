@@ -15,30 +15,20 @@
  */
 class Solution {
     
-    public boolean hasPathSumRecursion(TreeNode current, int targetSum)
-    {
-        if(current == null)
-            return false;
-        
-       if(current.val == targetSum && current.left == null && current.right == null)
-        return true;
-        
-        if(hasPathSumRecursion(current.left, targetSum - current.val) || hasPathSumRecursion(current.right, targetSum - current.val))
-            return true;
-        
-        
-        return false;
-    }
-    
-    public boolean hasPathSum(TreeNode root, int targetSum) {
-        
+    private boolean hasPathSumHelper(TreeNode root, int target){
         if(root == null)
             return false;
-        
-         return hasPathSumRecursion(root, targetSum);
     
+        if(root.val == target && root.left == null && root.right == null)
+            return true;
+        
+       if(hasPathSumHelper(root.left, target - root.val) || hasPathSumHelper(root.right, target - root.val))
+          return true;
+        
+       return false;
+      
+    }
+    public boolean hasPathSum(TreeNode root, int targetSum) {
+        return hasPathSumHelper(root, targetSum);
     }
 }
-
-   
-        
